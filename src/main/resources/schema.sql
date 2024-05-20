@@ -1,5 +1,6 @@
-create table tasks (
-                         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                         title VARCHAR(50) NOT NULL,
-                         author varchar(50) NOT NULL
+CREATE TABLE tasks (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    description VARCHAR(50) NOT NULL,
+    status VARCHAR(50) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

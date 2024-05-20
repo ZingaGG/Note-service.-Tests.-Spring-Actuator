@@ -1,5 +1,5 @@
-insert into tasks (title, author)
-values ('Гарри Поттер', 'Дж. Роулинг');
+insert into tasks (description, status, created_at)
+values ('Task 1', 'NOT_STARTED', CURRENT_TIMESTAMP);
 
-insert into tasks (title, author)
-values ('Война и мир', 'Лев Толстой');
+insert into tasks (description, status, created_at)
+values ('Task 2', 'NOT_STARTED', CURRENT_TIMESTAMP);
