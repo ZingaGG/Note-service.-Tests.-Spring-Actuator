@@ -1,5 +1,7 @@
 package ru.gb.spring_april_hw5.controller;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Metrics;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.spring_april_hw5.model.Task;
@@ -15,6 +17,8 @@ public class TaskController {
 
     private final TaskService taskService;
 
+    private final Counter addTaskCount = Metrics.counter("add_task_count");
+
     @GetMapping
     public List<Task> getAllTask(){
         return taskService.getAllTasks();
@@ -22,6 +26,9 @@ public class TaskController {
 
     @PostMapping
     public Task addTask(@RequestBody Task task){
+
+        addTaskCount.increment();
+
         return taskService.addTask(task);
     }
 
