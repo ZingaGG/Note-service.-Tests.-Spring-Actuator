@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import ru.gb.spring_april_hw5.model.Task;
 import ru.gb.spring_april_hw5.model.TaskStatus;
+import ru.gb.spring_april_hw5.service.FileGateway;
 import ru.gb.spring_april_hw5.service.TaskService;
 
+import java.io.File;
 import java.util.List;
 
 @RestController
@@ -17,6 +19,7 @@ public class TaskController {
 
     private final TaskService taskService;
 
+    private final FileGateway fileGateway;
     private final Counter addTaskCount = Metrics.counter("add_task_count");
 
     @GetMapping
@@ -28,6 +31,8 @@ public class TaskController {
     public Task addTask(@RequestBody Task task){
 
         addTaskCount.increment();
+
+        fileGateway.writeToFile(task.getDescription() + ".txt", task.toString());
 
         return taskService.addTask(task);
     }
